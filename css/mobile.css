@@ -1,0 +1,146 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+	/*not compatable with IE*/
+	--dark: #323232;
+	--med: #666666;
+	--light: #999999;
+	--icon-size: 32px;
+	--font-size-reg: 20px;
+	--font-size-small: 15px;
+
+	--conversation-radius-me: 32px 32px 5px  32px;
+	--conversation-radius-you: 32px 32px 32px 5px;
+}
+/*
+	h1 main title
+	h2 section heading
+	h3 icon text
+	h4 nav items
+	h5 messsege text headings
+*/
+
+* {
+	color: #eee;
+	font-size: var(--font-size-reg);
+	font-weight: 300;
+	box-sizing: border-box;
+	font-family: 'Indie Flower', cursive;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: var(--dark);
+	display: flex;
+	flex-flow: column nowrap;
+	padding:0px;
+}
+
+header,
+nav, 
+footer
+{
+	padding: 10px;
+}
+
+header {
+	order: 1;
+}
+
+main{
+	display: flex;
+	flex-flow: column;
+}
+
+
+nav {
+	order: 2;
+	background-color: var(--med);
+
+	flex: 1 0 0 ;
+	/*flex-basis: 20%;*/
+}
+
+	nav ul {
+		list-style-type: none;
+	}
+
+		nav ul li {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			padding: 5px;
+		}
+
+			nav ul li h4 {
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+
+			nav ul li .icon {
+				margin-top: auto;
+				margin-bottom: auto;
+				color: red;
+			}
+
+
+section {
+	order:3;
+	display:flex;
+	flex-direction: column;
+}
+
+
+	section ul {
+		background-color: var(--med);
+		margin: 5px;
+		border-radius: 5px;
+		list-style-type: none;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+		section ul li {
+			background-color: var(--light);
+			margin: 20px;
+			padding: 16px;
+			/*border-radius: 32px 32px 5px 32px;*/
+			border-radius: var(--conversation-radius-you);
+		}
+
+		section ul .me {
+			border-radius: var(--conversation-radius-me);
+			background-color: var(--dark);
+			text-align: right;
+			align-self: flex-end;
+		}
+
+		section ul li h5 {
+			font-size: var(--font-size-small);
+		}
+
+
+
+
+footer {
+	order: 4;
+	background-color: var(--med);
+}
+
+.icon {
+	display: inline-block;
+	border: thick;
+	background-color: var(--light);
+	border-color: var(--dark);
+	min-width: var(--icon-size);
+	min-height: var(--icon-size);
+	max-width: var(--icon-size);
+	max-height: var(--icon-size);
+	border-radius: var(--icon-size);
+	text-align: center;
+	margin: 5px;
+}

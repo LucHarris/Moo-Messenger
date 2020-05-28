@@ -1,0 +1,33 @@
+body{
+
+	flex-flow: column wrap;
+	
+}
+
+
+
+body > * {
+
+}
+
+
+header{
+	
+	flex-grow:1;
+}
+
+main{
+	flex-flow: row wrap;
+}
+nav {
+	flex-basis: 30%;
+
+}
+
+section{
+	flex-basis: 70%;
+
+}
+
+
+
