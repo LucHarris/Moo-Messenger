@@ -20,12 +20,7 @@
 			$fields = $this->db->list_fields($tableName);
 			return $fields;
 		}
-
-		
-
-
     }
-
 
 
 ?>

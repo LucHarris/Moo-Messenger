@@ -144,3 +144,9 @@ footer {
 	text-align: center;
 	margin: 5px;
 }
+
+
+.error{
+	background-color:red;
+	color:yellow;
+}
