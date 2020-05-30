@@ -7,7 +7,12 @@
 		</main>
 
 		<footer>
-			< footer >
+			< footer > <br><br>
+			<?php
+				foreach ($_SESSION as $key=>$val)
+				echo $key." ".$val."<br/>";
+			?>
+
 		</footer>
 	</body>
 </html>

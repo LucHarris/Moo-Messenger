@@ -8,24 +8,24 @@
             $this->db = $this->load->database("default",TRUE);
         }
 
-		public function get($name)
+		public function get($field, $name)
 		{
 			//todo change name to username
 			$validUser = filter_var($name, FILTER_SANITIZE_STRING);
-
 			
-			$query = $this->db->query("SELECT * FROM user WHERE name=\"".$validUserId."\"");
+			$query = $this->db->query("SELECT * FROM user WHERE ".$field."=\"".$validUser."\"");
 			$data = $query->row();
 			
 			return $data;
 		}
 
-		public function validate($name)
+		public function validate($email,$password)
 		{
-			$name = filter_var($username, FILTER_SANITIZE_STRING);
-
+			$email = filter_var($email, FILTER_SANITIZE_STRING);
+			$password = filter_var($password, FILTER_SANITIZE_STRING);
 			//query
-			$this->db->where('name', $name);
+
+			$this->db->where('email', $email); //password comes later
 			$query = $this->db->get("user");
 
 			//validate
@@ -33,14 +33,30 @@
 			{
                 $row = $query->row();
 
-				//todo password validation (refer to models/User.php)
+				$storedPassword = $row->password;
 
-				return true;
+				//return password_verify($password, $pw); //todo password validation
+				return $storedPassword == $password;
+				//return true;
 			}
 			else 
 			{
 				return false;
 			}
+		}
+
+		//Updates the last action time and date
+		public function update()
+		{
+			if($this->session->has_userdata('id'))
+			{
+				$id = $this->session->userdata('id');
+				$now = time();
+				$this->db->set('lastActive', $now);
+				$this->db->where('id', $id);
+				$this->db->update('user');
+			}
+			
 		}
 	}
 

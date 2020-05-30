@@ -150,3 +150,11 @@ footer {
 	background-color:red;
 	color:yellow;
 }
+
+
+input {
+	background-color: var(--dark);
+	border: solid 1px var(--light);
+	margin:5px;
+	padding: 5px;
+}

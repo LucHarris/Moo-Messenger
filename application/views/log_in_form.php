@@ -6,23 +6,34 @@
 
 	echo validation_errors();
 
-	$name = array(
-        'type'          => 'text',
-        'name'          => 'name',
-        'value'         => ''/*$projectData->Title*/,
-        'placeholder'   => 'your name'
+	$email = array(
+
+		'id'			=> 'email',
+        'type'          => 'email',
+        'name'          => 'email',
+        'value'         => 'tom@domain.com', //todo remove default
+        'placeholder'   => 'Email'
+    );
+
+	$password = array(
+		'id'			=> 'password',
+        'type'          => 'password',
+        'name'          => 'password',
+        'value'         => '123', //todo remove default
+        'placeholder'   => 'Password'
     );
 	
 	//controller validation
-	echo form_open("index.php/Login/validate"); //Todo
+	echo form_open("index.php/Log_In/validate"); //Todo
 	//Input fields
-	echo form_input($name);
+	echo $this->session->flashdata("error");
+	echo form_input($email);
+	echo form_input($password);
 	//error message
-	//echo form_error('name','<p class="error">','</p>'); 
+	echo form_error('name','<p class="error">','</p>'); 
 
 	//submit
-	echo form_submit("sumbit", "Login");
-	//echo $this->session->flashdata("error");
+	echo form_submit("sumbit", "Log in");
 	echo form_close();
 
 	

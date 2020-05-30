@@ -11,16 +11,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>			Sample		</title>
 		<!--Style Sheet-->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>css/mobile.css" />
-		<link rel="stylesheet"			  href="<?php echo base_url(); ?>css/desktop.css"  media="only screen and (min-width : 720px)" />
-		<link rel="shortcut icon" href="<?php echo base_url(); ?>images/test.jpg"   type="image/ico"    />
+		<link rel="stylesheet"		href="<?php echo base_url(); ?>css/mobile.css" />
+		<link rel="stylesheet"		href="<?php echo base_url(); ?>css/desktop.css"  media="only screen and (min-width : 720px)" />
+		<link rel="shortcut icon"	href="<?php echo base_url(); ?>images/test.jpg"   type="image/ico"    />
 
 		<meta charset="utf-8">
 		<title>Basic html layout example</title>
 	</head>
 	<body >
 		<header>
-			<h1>Messenger</h1>
+			<h1>
+			Messenger 
+			<?php
+				if( $this->session->userdata('email')  )
+				{
+					echo " - ".$this->session->forename . " ". $this->session->surname;
+				
+				}
+			?>
+			
+			</h1>
 		</header>
 
 		<main>
