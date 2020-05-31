@@ -1,9 +1,6 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    $this->load->helper('url'); //For base URL
-	$this->load->helper('form');
-
 	echo validation_errors();
 
 	$email = array(

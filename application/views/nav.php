@@ -18,7 +18,8 @@
 						}
 						else
 						{
-							echo "<a href=" . base_url("index.php/Log_In")  . "><li><div class=\"icon\"></div> <h4>Log in</h4></li></a>";
+							echo "<a href=" . base_url("index.php/Log_In")  . "><li><div class=\"icon\"></div> <h4>Log In</h4></li></a>";
+							echo "<a href=" . base_url("index.php/signup")  . "><li><div class=\"icon\"></div> <h4>Sign Up</h4></li></a>";
 						}
 
 					?>

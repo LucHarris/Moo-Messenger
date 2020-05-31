@@ -41,26 +41,33 @@ class Log_In extends CI_Controller {
 
 			if($this->User->validate($email,$password))
 			{
+
+
 				$user = $this->User->get('email',$email);
-
-				//remove unwanted fields such as password
-				$sessionData = array( 
-					'id'			=> $user->id , 
-					'email'			=> $user->email , 
-					'forename'		=> $user->forename , 
-					'surname'		=> $user->surname , 
-					'themeId'		=> $user->themeId , 
-					'pictureUrl'	=> $user->pictureUrl , 
-					'lastActive'	=> $user->lastActive 
-				);
-
 				
+				if(!$user->removed)
+				{
+					//remove unwanted fields such as password
+					$sessionData = array( 
+						'id'			=> $user->id , 
+						'email'			=> $user->email , 
+						'forename'		=> $user->forename , 
+						'surname'		=> $user->surname , 
+						'themeId'		=> $user->themeId , 
+						'pictureUrl'	=> $user->pictureUrl , 
+						'lastActive'	=> $user->lastActive 
+					);
 
+					$this->session->set_userdata($sessionData);
 
-				$this->session->set_userdata($sessionData);
-
-
-				redirect("index.php/Home");
+					redirect("index.php/Home");
+				}
+				else
+				{
+					$this->session->set_flashdata("error","email blocked");
+					redirect("index.php/Log_In");
+				}
+				
 			}
 			else 
 			{

@@ -48,16 +48,24 @@
 		//Updates the last action time and date
 		public function update()
 		{
-			if($this->session->has_userdata('id'))
+			if($this->session->id)
 			{
 				$id = $this->session->userdata('id');
-				$now = time();
+				$now = date('Y-m-d H:i:s');
 				$this->db->set('lastActive', $now);
 				$this->db->where('id', $id);
 				$this->db->update('user');
 			}
-			
 		}
+
+		public function create($newUser)
+		{
+			$this->db->insert('user', $newUser);
+
+            return ($this->db->affected_rows() >0)?true:false; //todo simplify to just a condition statement
+		}
+
+
 	}
 
 

@@ -152,7 +152,8 @@ footer {
 }
 
 
-input {
+input,
+select {
 	background-color: var(--dark);
 	border: solid 1px var(--light);
 	margin:5px;
