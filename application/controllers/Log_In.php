@@ -28,6 +28,7 @@ class Log_In extends CI_Controller {
 		$this->load->view("nav"); 
 
 		$this->load->library('form_validation');
+		$this->load->helper('cookie');
 
 		$this->form_validation->set_rules("email", "Email", 'required');
 		$this->form_validation->set_rules("password", "Password", 'required');
@@ -47,18 +48,31 @@ class Log_In extends CI_Controller {
 				
 				if(!$user->removed)
 				{
+
+					
 					//remove unwanted fields such as password
-					$sessionData = array( 
+					$userDetails = array( 
 						'id'			=> $user->id , 
 						'email'			=> $user->email , 
 						'forename'		=> $user->forename , 
 						'surname'		=> $user->surname , 
 						'themeId'		=> $user->themeId , 
 						'pictureUrl'	=> $user->pictureUrl , 
-						'lastActive'	=> $user->lastActive 
+						'lastActive'	=> $user->lastActive ,
+						
+					);
+					
+					$themeCookie = array(
+						'name'   => 'theme',
+						'value'  => $user->themeId,
+						'expire' =>  time()+60*60*24*7
 					);
 
-					$this->session->set_userdata($sessionData);
+					
+					
+					$this->session->set_userdata($userDetails);
+
+					$this->User->updateContactLists(); //user 
 
 					redirect("index.php/Home");
 				}
@@ -76,11 +90,7 @@ class Log_In extends CI_Controller {
 			}
 		}
 		
-		
-		/*
-		$this->load->view("log_in"); 
-		$this->load->view("footer");
-		*/
+
 	}
 
 	public function enter()

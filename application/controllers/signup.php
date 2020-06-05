@@ -26,23 +26,21 @@ class signup extends CI_Controller {
     
             if($this->form_validation->run())
             {
-
                 //todo check post 
                 $forename           = $this->input->post('forename' ,true);
                 $surname            = $this->input->post('surname'  ,true);
                 $email              = $this->input->post('email'    ,true);
                 $password           = $this->input->post('password' ,true);
                 $theme              = $this->input->post('theme'    ,true);
-                //$picture            = $this->input->post('picture'  ,true);
+                $picture            = $this->input->post('picture'  ,true);
 
-                
                 //todo ass array with new user data (password hash)
                 $newUser['forename'] = $forename;
                 $newUser['surname' ] = $surname ;
                 $newUser['email'   ] = $email   ;
-                $newUser['password'] = $password; // = password_hash($password,PASSWORD_DEFAULT);
-                $newUser['themeId' ] = $theme   ;
-               // $newUser['picture' ] = $picture ;
+                $newUser['password'] = password_hash($password,PASSWORD_DEFAULT);// = $password; 
+                $newUser['themeId' ] = $theme;
+                $newUser['picture' ] = $picture ;
 
                 //todo load model
                 $this->load->Model("User");

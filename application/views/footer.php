@@ -3,7 +3,7 @@
 
     $this->load->helper('url'); //For base URL
 ?>
-
+			</section>
 		</main>
 
 		<footer>
@@ -12,7 +12,14 @@
 			if(isset($this->session->id) )
 			{
 				foreach ($_SESSION as $key=>$val)
-				echo $key." ".$val."<br/>";
+				if(is_array($val))
+				{
+					echo $key.": array count: ".count($val)."<br/>";
+				}
+				else{
+					
+					echo $key.": ".$val."<br/>";
+				}
 			}
 			?>
 

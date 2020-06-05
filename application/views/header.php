@@ -1,6 +1,6 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
-    $this->load->helper('url'); //For base URL
+    $this->load->helper('cookie'); //For base URL
 ?>
 
 <DOCTYPE! html>
@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>			Sample		</title>
 		<!--Style Sheet-->
+		<link rel="stylesheet"		href="<?php echo base_url(); ?>css/properties.css" />
 		<link rel="stylesheet"		href="<?php echo base_url(); ?>css/mobile.css" />
 		<link rel="stylesheet"		href="<?php echo base_url(); ?>css/desktop.css"  media="only screen and (min-width : 720px)" />
 		<link rel="shortcut icon"	href="<?php echo base_url(); ?>images/test.jpg"   type="image/ico"    />
@@ -18,7 +19,9 @@
 		<meta charset="utf-8">
 		<title>Basic html layout example</title>
 	</head>
-	<body >
+	<body class="theme<?php 
+		$theme = $this->session->themeId ?? 1; 		echo $theme;  
+	?>" >
 		<header>
 			<h1>
 			Messenger 

@@ -1,0 +1,85 @@
+:root {
+	/*not compatable with IE*/
+	--dark: #333333;
+	--med: #666666;
+	--light: #999999;
+	--bright: #EEEEEE;
+	--icon-size: 32px;
+	--spacing-size: 5px;
+	--profile-size: 256px;
+	--font-size-reg: 15px;
+	--font-size-small: 12px;/*15px;*/
+	
+	--conversation-radius-me: 32px 32px 5px  32px;
+	--conversation-radius-you: 32px 32px 32px 5px;
+}
+
+.theme1
+{
+	--dark: #333333;
+	--med: #666666;
+	--light: #999999;
+	--bright: #EEEEEE;
+}	
+.theme2
+{
+	--dark: #999999;
+	--med: #666666;
+	--light: #333333;
+	--bright: #EEEEEE;
+}
+
+/*kobi*/
+.theme3
+{
+	--dark: #f0a6ca;
+	--med: #EFC3E6;
+	--light: #f0e6ef;
+	--bright: #555555;
+}
+
+/*Red/Navy*/
+.theme4
+{
+	--dark: #2b2d42;
+	--med: #ef233c;
+	--light: #d90429;
+	--bright: #edf2f4;
+}
+
+/*Duke Jam*/
+.theme5
+{
+	--dark: #390099;
+	--med: #9e0059;
+	--light: #ff0054;
+	--bright: #eeeeee;
+}
+
+/*Carcoal*/
+.theme6
+{
+	--dark: #403d39;
+	--med: #252422;
+	--light: #eb5e28;
+	--bright: #fffcf2;
+}
+/*cool grey*/
+.theme7
+{
+	--dark: #a0b9bf;
+	--med: #a5ccd1;
+	--light: #bcd4de;
+	--bright: #555555;
+}
+
+/*kitchen garden*/
+.theme8
+{
+	--dark: #ff8360;
+	--med: #e8e288;
+	--light: #7dce82;
+	--bright: #111111;
+}
+
+

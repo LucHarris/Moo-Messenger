@@ -13,10 +13,12 @@ class logout extends CI_Controller {
 			$this->session->unset_userdata('forename'		);
 			$this->session->unset_userdata('forname'		);
 			$this->session->unset_userdata('surname'		);
-			$this->session->unset_userdata('themeId'		);
 			$this->session->unset_userdata('pictureUrl'		);
 			$this->session->unset_userdata('lastActive'		);
-		
+			$this->session->unset_userdata('pmList'			);
+			$this->session->unset_userdata('teamList'		);
+			//keep themeId until next login or expire
+
 			$this->load->view("header");
 			$this->load->view("nav"); 
 			$this->load->view("footer");

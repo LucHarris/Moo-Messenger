@@ -1,18 +1,10 @@
 
+/*
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+font-family: 'Indie Flower', cursive; 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-:root {
-	/*not compatable with IE*/
-	--dark: #323232;
-	--med: #666666;
-	--light: #999999;
-	--icon-size: 32px;
-	--font-size-reg: 20px;
-	--font-size-small: 15px;
-
-	--conversation-radius-me: 32px 32px 5px  32px;
-	--conversation-radius-you: 32px 32px 32px 5px;
-}
 /*
 	h1 main title
 	h2 section heading
@@ -22,11 +14,11 @@
 */
 
 * {
-	color: #eee;
+	color: var(--bright);
 	font-size: var(--font-size-reg);
 	font-weight: 300;
 	box-sizing: border-box;
-	font-family: 'Indie Flower', cursive;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 	padding: 0;
 	margin: 0;
@@ -72,7 +64,7 @@ nav {
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-start;
-			padding: 5px;
+			padding: var(--spacing-size);
 		}
 
 			nav ul li h4 {
@@ -96,8 +88,8 @@ section {
 
 	section ul {
 		background-color: var(--med);
-		margin: 5px;
-		border-radius: 5px;
+		margin: var(--spacing-size);
+		border-radius: var(--spacing-size);
 		list-style-type: none;
 		display: flex;
 		flex-direction: column;
@@ -145,10 +137,25 @@ footer {
 	margin: 5px;
 }
 
+.profile {
+	width:var(--profile-size);
+	height: var(--profile-size);
+	border-radius: var(--profile-size);
+	background: #ff11ff;
+	background-position: center;
+	/* background-size:  var(--profile-size)  var(--profile-size); */
+	background-size:  auto 100%;
+
+}
+
 
 .error{
 	background-color:red;
 	color:yellow;
+	border-radius: var(--icon-size);
+	margin: var(--spacing-size);
+	padding: var(--spacing-size);
+	padding-left: 10px;
 }
 
 
