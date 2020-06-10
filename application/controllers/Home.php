@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 			$this->load->model("User");
 			//$this->load->model("Chat");
 
-			$this->User->update();
+			$this->User->updateLive();
 		}
 
 	}

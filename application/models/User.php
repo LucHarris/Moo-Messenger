@@ -8,6 +8,12 @@
             $this->db = $this->load->database("default",TRUE);
         }
 
+		public function getRecord($userId = "no user id provided")
+		{
+			$this->db->where('id',$userId);
+			$query = $this->db->get('user');
+			return $query->row();
+		}
 		//requires sanitising
 		public function get($field, $value, $hideRemoved = true)
 		{
@@ -55,14 +61,13 @@
 		}
 
 		//Updates the last action time and date
-		public function update()
+		public function updateLive()
 		{
 			if($this->session->id)
 			{
-				$id = $this->session->userdata('id');
 				$now = date('Y-m-d H:i:s');
 				$this->db->set('lastActive', $now);
-				$this->db->where('id', $id);
+				$this->db->where('id', $this->session->id);
 				$this->db->update('user');
 			}
 		}
@@ -81,13 +86,18 @@
                 $user = $this->session->id;
 
 
-                $select = "SELECT otherUserDT.otherUserId,   otherUserDT.otherForename,    
-                            otherUserDT.otherSurname,   
-                            CASE WHEN linkchatuser.userLastAccessed < recentMessageDT.recentMessageDate THEN 1 ELSE 0 END AS unread";
+                $select = "
+				SELECT otherUserDT.otherUserId,   
+					otherUserDT.otherForename,    
+					otherUserDT.otherSurname,  
+					linkchatuser.chatId,
+					otherUserDT.iconId, 
+					otherUserDT.iconColour,
+					CASE WHEN linkchatuser.userLastAccessed < recentMessageDT.recentMessageDate THEN 1 ELSE 0 END AS unread";
                 $from = " FROM   user
                     LEFT JOIN linkchatuser ON user.id = linkchatuser.userId
                     LEFT JOIN chat ON linkchatuser.chatId = chat.id
-                    LEFT JOIN (SELECT link.chatId, otherUser.id AS otherUserId, otherUser.forename AS otherForename, otherUser.surname AS otherSurname
+                    LEFT JOIN (SELECT link.chatId, otherUser.id AS otherUserId, otherUser.forename AS otherForename, otherUser.surname AS otherSurname, otherUser.iconId, otherUser.iconColour
                                 FROM linkchatuser AS link
                                 LEFT JOIN user AS otherUser ON link.userId = otherUser.id
                                   WHERE link.removed = 0 AND otherUser.removed = 0) AS otherUserDT ON chat.id = otherUserDT.chatId
@@ -120,7 +130,12 @@
 			{
 				$user = $this->session->id;
 
-				$select = "SELECT chat.id AS chatId, chat.name AS chatName, CASE WHEN linkchatuser.userLastAccessed < recentMessageDT.recentMessageDate THEN 1 ELSE 0 END AS unread ";
+				$select = "
+				SELECT chat.id AS chatId, 
+				chat.name AS chatName, 
+				chat.iconId, 
+				chat.iconColour, 
+				CASE WHEN linkchatuser.userLastAccessed < recentMessageDT.recentMessageDate THEN 1 ELSE 0 END AS unread ";
 				$from = "FROM 	user 
 						LEFT JOIN linkchatuser 	ON user.id = linkchatuser.userId 
 						LEFT JOIN chat		ON chat.id = linkchatuser.chatId
@@ -161,6 +176,59 @@
 			}
 
 			
+		}
+
+		//excludes password
+		//Filtered in controller
+		public function edit($updateDetails)
+		{
+			//password not here
+			foreach($updateDetails AS $field => $value)
+			{
+				$this->db->set($field,$value);
+			}
+			$this->db->where('id',$this->session->id);
+			$this->db->where('removed =', "0");
+			
+			$this->db->update('user');
+			
+			return ($this->db->affected_rows() === 1);
+
+		}
+
+		public function verifyPassword($password)
+		{
+
+			$this->db->where('id', $this->session->id);
+			$this->db->where('removed =', "0");
+			$query = $this->db->get('user');
+
+			//validate
+			if($query->num_rows() == 1)
+			{
+                $row = $query->row();
+
+				$storedPassword = $row->password;
+
+				return password_verify($password, $storedPassword); 
+			}
+			else 
+			{
+				return false;
+			}
+		}
+
+		//User id based on logged in user and filters value
+		public function updateElementInRecord($field, $value)
+		{
+
+			$this->db->set($field, $value);
+			$this->db->where('id', $this->session->id);
+			$this->db->where('removed =', "0");
+			$this->db->update('user');
+
+			return ($this->db->affected_rows() === 1);
+
 		}
 
 	}

@@ -6,37 +6,39 @@
     
     if(!empty($user))
     {
-        //foreach ($user as $key=>$val)
-        //		echo $key." ".$val."<br/>";
+        echo "<div class=\"profile\">";
         
-
-        echo $user->id;
-        echo "<br>";
-        echo $user->forename;
-        echo "<br>";
-        echo $user->surname;
-        echo "<br>";
-        echo $user->lastActive;
-        echo "<br>";
+        $iconId = $user->iconId ?? 0;
+        $iconFile =   "images/icons/icon".sprintf('%04d',$iconId).".png";
         
-        if(isset($user->pictureUrl))
+        //large profile icon 
+        echo "<div class=\"profile-icon\" style=\"";
+        if(file_exists($iconFile))
         {
-           
-            
-            //todo validate image
-            if(file_exists($user->pictureUrl))
-            {
-            }
-            
-            
-            list($width, $height, $type, $attr) = getimagesize($user->pictureUrl);
-            $stretch = ($width > $height)? "auto 100%" :  "  100%  auto"; 
-            echo "<div class=\"profile\" style=\"background-image: url('"  . $user->pictureUrl .   "'); background-size: ".$stretch.";\"></div>";
-
-            
+            echo "background-image: url('"  .base_url($iconFile) .   "'); ";
         }
-        echo "<br>";
+        echo "background-color: ".$user->iconColour,";\">";
+        echo "</div>";
         
+        
+        echo "<div class=\"details\">";
+
+        foreach($userTable AS $field=>$value)
+        {
+            echo "<p>";
+            echo "<span>";
+            echo $field;
+            echo " : ";
+            echo "</span>"; 
+            echo "<span>"; 
+            echo $value;
+            echo "</span>"; 
+            echo "</p>";
+        }
+
+        echo "</div>"; //details class end
+        
+        echo "</div>"; // profile icon
 
     }
     else

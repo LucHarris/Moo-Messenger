@@ -59,23 +59,41 @@ nav {
 	nav ul {
 		list-style-type: none;
 	}
+		nav ul a{
+			background-color: hotpink;
+		}
 
-		nav ul li {
+
+		nav ul a:link    , 
+		nav ul a:visited  , 
+		nav ul a:active  {
+			text-decoration: none;
+		
+		}
+		
+		nav ul a:hover {
+			text-decoration: underline;
+		}
+
+		
+
+		nav ul a li {
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-start;
 			padding: var(--spacing-size);
+			border-radius: 5px;
+			
 		}
 
-			nav ul li h4 {
+			nav ul a li  h4 {
 				margin-top: auto;
 				margin-bottom: auto;
 			}
 
-			nav ul li .icon {
+			nav ul a li .icon {
 				margin-top: auto;
 				margin-bottom: auto;
-				color: red;
 			}
 
 
@@ -115,6 +133,35 @@ section {
 			font-size: var(--font-size-small);
 		}
 
+		section .profile{
+			display:flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		section .profile .details{
+			display:flex;
+			flex-direction: column;
+
+
+		}
+
+		section form{
+			display: flex;
+			flex-direction: column;
+
+		}
+		section form * {
+			margin: 20px 100px;
+			padding:10px;
+
+		}
+
+		section .profile .detail h5{
+			flex-basis: 50%;
+			text-align: right;
+		}
+
 
 
 
@@ -126,6 +173,7 @@ footer {
 .icon {
 	display: inline-block;
 	border: thick;
+	background-size: 100% 100%;
 	background-color: var(--light);
 	border-color: var(--dark);
 	min-width: var(--icon-size);
@@ -137,7 +185,12 @@ footer {
 	margin: 5px;
 }
 
-.profile {
+
+
+
+
+
+.profile-icon {
 	width:var(--profile-size);
 	height: var(--profile-size);
 	border-radius: var(--profile-size);

@@ -6,7 +6,6 @@
 ?>
 
 <nav>
-	Conversations
 	<ul>
 		<a href="<?php echo base_url(); ?>"><li><div class="icon"></div> <h4>index</h4></li></a>
 		
@@ -29,11 +28,34 @@
 
 				foreach($this->session->pmList AS $row)
 				{
+					$iconId = $row['iconId'] ?? 0;
+
+					$iconFile =   "images/icons/icon".sprintf('%04d',$iconId).".png";
 					
-					echo "<a href=" . base_url("index.php/profile?userId=".$row['otherUserId'])  . "><li><div class=\"icon\"></div> <h4>";
-					echo $row['otherUserId']." ".$row['otherForename']." ".$row['otherSurname'];
+					//item
+					echo "<a href=" . base_url("index.php/chat/id/".$row['chatId']).">";
+					echo "<li>";
+
+					//icon
+					echo "<div class=\"icon\" ";
+
+					// icon style
+					echo "style=\"";
+					if(file_exists($iconFile))
+						echo " background-image: url('".base_url($iconFile)."');";
+					if(!empty($row['iconColour']))
+						echo " background-color: #".$row['iconColour']."\" ";
+					echo "\"></div>";
+
+					//Contact name
+					echo "<h4>";	
+					echo $row['otherForename']." ".$row['otherSurname'];
 					if ($row['unread'] == 1) echo " New ";
-					echo " </h4></li></a>";
+					echo "</h4>";
+
+					//close item
+					echo "</li>";
+					echo "</a>";
 				}
 			}
 			if($this->session->teamList)
@@ -42,18 +64,45 @@
 
 				foreach($this->session->teamList AS $row)
 				{
-					//echo "<a href=" . base_url("index.php/profile?userId=".$row['chatId'])  . "><li><div class=\"icon\"></div> <h4>";
-					echo $row['chatId']. " ". $row['chatName'] ;
+
+
+					$iconId = $row['iconId'] ?? 0;
+					$iconFile =   "images/icons/icon".sprintf('%04d',$iconId).".png";
+					
+					//item
+					echo "<a href=" . base_url("index.php/chat/id/".$row['chatId']).">";
+					echo "<li>";
+
+					//icon
+					echo "<div class=\"icon\" ";
+
+					// icon style
+					echo "style=\"";
+					if(file_exists($iconFile))
+						echo " background-image: url('".base_url($iconFile)."');";
+					if(!empty($row['iconColour']))
+						echo " background-color: #".$row['iconColour']."\" ";
+					echo "\"></div>";
+
+
+					//team contact details
+					echo "<h4>";	
+					echo $row['chatName'];
 					if ($row['unread'] == 1) echo " New ";
-					//echo " </h4></li></a>";
+					echo "</h4>";
+
+					//close item
+					echo "</li>";
+					echo "</a>";
+
 				}
 			}
 
 
 
 		?>
-		<li><div class="icon"></div> <h4>Two</h4></li>
-		<li><div class="icon"></div> <h4>Three</h4></li>
+		<!--<li><div class="icon"></div> <h4>Sample</h4></li>
+		<li><div class="icon"></div> <h4>todo remove</h4></li> --> 
 	</ul>
 </nav>
 <section>					

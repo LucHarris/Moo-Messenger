@@ -23,6 +23,7 @@
 	//controller validation
 	echo form_open("index.php/Log_In/validate"); //Todo
 	//Input fields
+	echo '<h1>Log In</h1>';
 	echo $this->session->flashdata("error");
 	echo form_input($email);
 	echo form_input($password);
